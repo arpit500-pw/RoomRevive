@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   ROOMREVIVE GLOBAL DESIGN SYSTEM
+   ============================================= */
+
+@layer base {
+  :root {
+    --color-ivory: #F7F5F0;
+    --color-forest: #24483B;
+    --color-charcoal: #242824;
+    --color-terracotta: #C8795A;
+    --color-sage: #DDE5D9;
+    --color-beige: #EAE4D8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ivory text-charcoal font-sans antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Refined focus states */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-forest rounded-sm;
+  }
+
+  /* Selection highlight */
+  ::selection {
+    @apply bg-sage text-forest;
+  }
+}
+
+@layer components {
+  /* ---- Typography Helpers ---- */
+  .heading-display {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  .text-muted {
+    @apply text-charcoal-muted;
+  }
+
+  /* ---- Card Base ---- */
+  .card {
+    @apply rounded-2xl bg-white border border-beige shadow-subtle;
+  }
+
+  .card-hover {
+    @apply hover:border-forest/30 hover:shadow-elevated transition-all duration-300;
+  }
+
+  /* ---- Button Variants ---- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-forest text-ivory font-semibold text-sm tracking-wide shadow-soft hover:bg-forest-800 hover:shadow-elevated transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white text-charcoal font-semibold text-sm border border-beige-dark hover:bg-ivory-200 hover:border-forest/30 transition-colors shadow-subtle;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 text-sm font-medium text-charcoal hover:text-forest transition-colors;
+  }
+
+  .btn-terracotta {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-terracotta text-white font-semibold text-sm hover:bg-terracotta-dark shadow-soft hover:shadow-elevated transition-all;
+  }
+
+  /* ---- Section Containers ---- */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply font-display font-bold text-3xl sm:text-4xl text-forest tracking-tight;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-bold uppercase tracking-widest text-terracotta;
+  }
+
+  /* ---- Tag Badges ---- */
+  .tag-forest {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sage/60 text-forest border border-forest/10;
+  }
+
+  .tag-terracotta {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold bg-terracotta/15 text-terracotta border border-terracotta/20;
+  }
+
+  /* ---- Muted Input ---- */
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl border border-beige bg-ivory/60 text-sm text-charcoal placeholder-charcoal-faint focus:outline-none focus:border-forest focus:bg-white transition-colors;
+  }
+
+  /* ---- Scrollbar Hide ---- */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  /* Masonry-style columns helper */
+  .masonry-col-2 {
+    columns: 2;
+  }
+  .masonry-col-3 {
+    columns: 3;
+  }
+  .masonry-col-4 {
+    columns: 4;
+  }
+
+  /* Animate-in utilities (simple CSS fallbacks for Tailwind animate-in) */
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  .fade-in {
+    animation-name: fadeIn;
+    animation-duration: 200ms;
+  }
+  .slide-in-from-top-2 {
+    animation-name: slideInFromTop;
+    animation-duration: 200ms;
+  }
+  .zoom-in-50 {
+    animation-name: zoomIn50;
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* ---- Keyframes ---- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn50 {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Image error fallback color ---- */
+img {
+  background-color: #EAE4D8;
+}
+
+/* ---- Accent Scrollbar (non-hidden) ---- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #EAE4D8;
+}
+::-webkit-scrollbar-thumb {
+  background: #B5C4B0;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #24483B;
+}
+
+/* ---- Input range track/thumb styling ---- */
+input[type='range'] {
+  height: 4px;
+  border-radius: 999px;
+}
+input[type='range']::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #24483B;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #24483B;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+/* ---- Reduced motion support ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Print ---- */
+@media print {
+  nav, footer, button {
+    display: none !important;
+  }
+}
+
